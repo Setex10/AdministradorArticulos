@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    @apply h-screen w-full bg-gradient-to-r from-teal-700 to-sky-800 font-mono;
+}
+
+.labelStyle:has(> input:focus) {
+    @apply border-emerald-500;
+    transition: 0.5s linear;
+}
+
+.itemContainer {
+    @apply m-5 pr-2 pl-2 pt-5 pb-5 bg-gray-100 rounded-lg shadow-lg text-cyan-950 text-xs;
+    @apply grid grid-cols-3 gap-2;
+}
+
+.formManipulate {
+    @apply flex flex-col items-center justify-center;
+    & label {
+        @apply w-3/4 text-gray-700 flex flex-row items-center justify-center;
+        & input, select {
+        @apply w-2/4 border-2 border-gray-300 rounded-lg p-2 ml-2 mr-2;
+        }
+    }
+    & button {
+        @apply w-3/4 bg-pink-700 text-white rounded-lg p-2 mt-2;
+    }
+}
+
+

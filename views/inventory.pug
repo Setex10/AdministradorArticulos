@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="./styles/styles.css")
+        title Inventario
+    body
+        include header.pug
+        section(class="h-full pr-8 pl-8", id="content")
+            div(class="")
+                button(class="bg-slate-800 text-cyan-100 rounded-2xl p-2 mb-2 hover:bg-slate-700", id="addNewItem") Agregar nuevo item 
+            div(class="h-screen bg-slate-800 text-cyan-100 rounded-2xl p-2 overflow-y-scroll overscroll-contain" id="itemsContainer")
+                include buttonsView.pug
+                div(id="itemsListConainer",)
+    script(src="./scripts/inventory.js", type="module") 

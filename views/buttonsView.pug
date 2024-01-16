@@ -1,0 +1,13 @@
+div(id="selectView", class="grid grid-cols-2 justify-items-center w-full")
+    button(type="button", class="bg-emerald-500 w-3/4 p-2 rounded-2xl", id="viewItems") Inventario
+    form(class="col-span-2 w-full flex flex-col justify-center items-baseline", id="formFilter",
+    action="/api/items", method="get")
+        label Filtrar por: 
+            select(class="m-2 rounded-2xl p-2 text-black", name="filter", id="selectFilter")
+                option(value="name") Nombre
+                option(value="enterprise_name") Empresa
+                option(value="unit") Unidad
+                option(value="price") Precio
+                option(value="quantity") Cantidad
+                option(value="product_key") Clave del producto
+        input(class="m-2 rounded-2xl p-2 text-black", type="text", name="value", placeholder="Valor", id="filterValue") 
