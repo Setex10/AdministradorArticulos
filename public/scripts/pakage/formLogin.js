@@ -24,3 +24,4 @@ const formLoginEvent = async(event) => {
     }
 }
 
+formLogin.addEventListener('submit', formLoginEvent)

@@ -2,7 +2,7 @@ const express = require('express')
 const route = express.Router()
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
-const {client, ObjectId} = require('../db')
+const {client, ObjectId} = require('../../db')
 
 
 route.get('/api/items/:name', async(req, res) => {

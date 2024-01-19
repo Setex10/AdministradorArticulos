@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const route = express.Router();
-const {client} = require('../db');
+const {client} = require('../../db');
 require('dotenv').config();
 const jwt = require('jsonwebtoken')
 
@@ -16,7 +16,7 @@ route.get('/login', (req, res) => {
         msgButton: "Enviar",
         href: "/register",
         action: "/login",
-        srcScript: "./scripts/package/formLogin.js",
+        srcScript: "../scripts/pakage/formLogin.js",
     });
 })
 

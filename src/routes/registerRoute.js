@@ -1,7 +1,7 @@
 const express = require('express');
 const route = express.Router();
 const bcrypt = require('bcrypt');
-const {client, ObjectId} = require('../db');
+const {client} = require('../../db');
 
 route.get('/register', (req, res) => {
     res.render('login',{
@@ -14,7 +14,7 @@ route.get('/register', (req, res) => {
         msgButton: "Crear",
         href: "/login",
         action: "/register",
-        srcScript: "./scripts/pakage/formRegister.js",
+        srcScript: "../scripts/pakage/formRegister.js",
     });
 })
 

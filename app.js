@@ -8,18 +8,18 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
 //import routes
-const indexRoute = require('./routes/indexRoute')
-const loginRoute = require('./routes/loginRoute')
-const inventoryRoute = require('./routes/inventoryRoute')
-const logoutRoute = require('./routes/logoutRoute')
-const apiRoute = require('./routes/apiRoute')
-const registerRoute = require('./routes/registerRoute')
+const indexRoute = require('./src/routes/indexRoute')
+const loginRoute = require('./src/routes/loginRoute')
+const inventoryRoute = require('./src/routes/inventoryRoute')
+const logoutRoute = require('./src/routes/logoutRoute')
+const apiRoute = require('./src/routes/apiRoute')
+const registerRoute = require('./src/routes/registerRoute')
 
 //settings
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.set('view engine', 'pug')
-app.set('views', './views')
+app.set('views', './public/views')
 app.use(express.static('public', { extended: true }))
 app.use(cookieParser())
 app.use(cors({
