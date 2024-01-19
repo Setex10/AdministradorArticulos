@@ -136,9 +136,11 @@ route.put('/api/item', async (req, res) => {
         await client.connect()
         const db = client.db("InventoryStore")
         const items = db.collection("items")
+        const id_user = jwt.verify(req.cookies.token, process.env.TOKEN_SECRET).id
         const filter = {_id: new ObjectId(body._id), 
-            id_user: new ObjectId(req.cookies.user._id)}
+            id_user: new ObjectId(id_user)}
         delete body._id
+        console.log(filter)
         const set = {$set: body}
         const result = await items.updateOne(filter, set)
         if(result.modifiedCount === 0) throw new Error("No item found")
