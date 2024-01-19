@@ -16,12 +16,11 @@ const formLoginEvent = async(event) => {
         document.location.href = 'https://manageitems.onrender.com/inventory'
     }
     else {
-        console.log("Hola")
-        // const error = await fetchToUser.json();
-        // const messageTag = document.createElement('p');
-        // messageTag.classList.add('text-red-500', 'text-xs', 'italic', 'mt-1');
-        // messageTag.textContent = error.message;
-        // formLogin.appendChild(messageTag)
+        const error = await fetchToUser.json();
+        const messageTag = document.createElement('p');
+        messageTag.classList.add('text-red-500', 'text-xs', 'italic', 'mt-1');
+        messageTag.textContent = error.message;
+        formLogin.appendChild(messageTag)
     }
 }
 

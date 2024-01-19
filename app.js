@@ -22,10 +22,6 @@ app.set('view engine', 'pug')
 app.set('views', './public/views')
 app.use(express.static('public', { extended: true }))
 app.use(cookieParser())
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}))
 
 
 //global middleware 
