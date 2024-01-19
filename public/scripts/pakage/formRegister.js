@@ -14,7 +14,7 @@ formRegister.addEventListener('submit', async (event) => {
     })
     if(fetchToUser.ok) {
         
-        document.location.href = 'https://manageitems.onrender.com/login'
+        document.location.href = 'http://localhost:300/login'
     } else {
         const error = await fetchToUser.json();
         const messageTag = document.createElement('p');
