@@ -12,5 +12,7 @@ html(lang="en")
                 button(class="bg-slate-800 text-cyan-100 rounded-2xl p-2 mb-2 hover:bg-slate-700", id="addNewItem") Agregar nuevo item 
             div(class="h-screen bg-slate-800 text-cyan-100 rounded-2xl p-2 overflow-y-scroll overscroll-contain" id="itemsContainer")
                 include buttonsView.pug
-                div(id="itemsListConainer",)
-    script(src="./scripts/inventory.js", type="module") 
+                div(id="itemsListConainer", class="tablet:grid tablet:grid-cols-2 portatil:grid-cols-3")
+    script(src="./scripts/inventory.js", type="module")
+    script(src="./scripts/pakage/menuAnimated.js")
+    script(src="./scripts/pakage/filterData.js", type="module")

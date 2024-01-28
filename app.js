@@ -14,6 +14,7 @@ const inventoryRoute = require('./src/routes/inventoryRoute')
 const logoutRoute = require('./src/routes/logoutRoute')
 const apiRoute = require('./src/routes/apiRoute')
 const registerRoute = require('./src/routes/registerRoute')
+const storeRoute = require('./src/routes/storeRoute')
 
 //settings
 app.use(bodyParser.json())
@@ -67,6 +68,7 @@ app.use(inventoryRoute)
 app.use(logoutRoute)
 app.use(apiRoute)
 app.use(registerRoute)
+app.use(storeRoute)
 
 app.listen(3000, () =>{
     console.log('Server is running on port 3000')

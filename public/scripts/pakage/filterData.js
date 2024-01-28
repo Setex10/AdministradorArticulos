@@ -1,7 +1,8 @@
 import { fetchItems } from "./fetchItems.js";
-import itemsTemplate from "./loadItems.js";
+import {itemsTemplate} from "./loadItems.js";
 
-const itemsListConainer = document.querySelector('#itemsListConainer');
+const itemsListConainer = document.querySelector('#itemsListConainer'),
+        formFilter = document.querySelector('#formFilter');
 
 const formFilterEvent = async(event) => {
     event.preventDefault();
@@ -12,6 +13,10 @@ const formFilterEvent = async(event) => {
     const params = {[query.filter]: query.value}
     const fetchToItems = await fetchItems(params);
     itemsListConainer.innerHTML = '';
+    if(fetchToItems.message) {
+        itemsListConainer.innerHTML = '<h2>Hubo un error, recarga la página</h2>'
+        return;
+    }
     if(fetchToItems.length == 0) {
         itemsListConainer.innerHTML = '<h1>No hay Items</h1>'
         return;
@@ -22,4 +27,4 @@ const formFilterEvent = async(event) => {
     })
 }
 
-export default formFilterEvent;
+formFilter.addEventListener('submit', formFilterEvent);

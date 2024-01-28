@@ -19,30 +19,39 @@ const eventDeleteModal = (event) => {
     modalDelete(item, action)
 }
 
-const itemsTemplate = (items, action) => {
-    const itemContainer = document.createElement('div');
-    itemContainer.classList.add('itemContainer');
-    const containerInfo = document.createElement('div');
-    containerInfo.id = "itemInfo"
-    containerInfo.classList.add('col-span-2');
-
-
+const createObjectTags = (items) => {
+    if(items["amount"] && items["price"]){
+        items["utilities"] = ((Number(items["amount"]) - Number(items["unit_price"]))/Number(items["amount"])) * 100
+        items["utilities"] = items["utilities"].toFixed(2)
+    }
     const infoItemTags = Object.keys(items).reduce((acc, item) => {
-        if(item !== '_id' && item !== 'enterprise_id') {
-            if(item === 'enterprise_name'){
-                acc.push({tag: 'p', class:item, textContent: `Marca: ${items[item]}`})
-            } else if(item === 'quantity'){
-                acc.push({tag: 'p', class:item, textContent: `Cantidad: ${items[item]}`})
-            } else if(item === 'price'){
-                acc.push({tag: 'p', class:`${item} text-emerald-500`, textContent: 'Precio:', subTag: {
-                    tag: 'span', textContent:  ` $${items[item]}`, class:"text-slate-900" 
-                }})
-            } else if(item === 'unit'){
-                acc.push({tag: 'p', class:item, textContent: `Unidad: ${items[item]}`})
-            } else if(item === 'product_key'){
-                acc.push({tag: 'p', class:`${item}`, textContent: 'Clave del producto: ', subTag: {
-                    tag: 'span', class: "text-sky-500", textContent: `${items[item]}`
-                }})
+        const texts = {
+            enterprise_name: {tag: 'p', class:item, textContent: `Marca: ${items[item]}`},
+            quantity: {tag: 'p', class:item, textContent: `Cantidad: ${items[item]}`},
+            price: {tag: 'p', class:`${item} text-emerald-500`, textContent: 'Precio:', subTag: {
+                tag: 'span', textContent:  ` $${items[item]}`, class:"text-slate-900" 
+            }},
+            unit: {tag: 'p', class:item, textContent: `Unidad: ${items[item]}`},
+            product_key: {tag: 'p', class:`${item}`, textContent: 'Clave del producto: ', subTag: {
+                tag: 'span', class: "text-sky-500", textContent: `${items[item]}`
+            }},
+            amount: {tag: 'p', class:`${item}`, textContent: 'Importe: ', subTag: {
+                tag: 'span', class: "text-sky-500", textContent: `$${items[item]}`
+            }},
+            quantity: {tag: 'p', class:`${item}`, textContent: 'Cantidad: ', subTag: {
+                tag: 'span', class: "text-sky-500", textContent: `${items[item]}`
+            }},
+            unit_price: {tag: 'p', class:`${item}`, textContent: 'Precio unitario: ', subTag: {
+                tag: 'span', class: "text-sky-500", textContent: `$${items[item]}`
+            }},
+            utilities: {tag: 'p', class:`${item}`, textContent: 'Utilidad: ', subTag: {
+                tag: 'span', class: "text-sky-500", textContent: `${items[item]}%`
+            }},
+        }
+        if(item !== '_id') {
+            if(texts[item]) {
+                acc.push(texts[item])
+
             }
             else {
                 acc.push({tag: 'p', class:item, textContent: `${items[item]}`})
@@ -50,11 +59,21 @@ const itemsTemplate = (items, action) => {
         }
         return acc;
     }, []);
+    return infoItemTags;
+}
 
+const itemsTemplate = (items, action) => {
+    const itemContainer = document.createElement('div');
+    itemContainer.classList.add('itemContainer', 'bg-gray-100');
+    const containerInfo = document.createElement('div');
+    containerInfo.id = "itemInfo"
+    containerInfo.classList.add('col-span-2');
+
+    const infoItemTags = createObjectTags(items);
     createTags(infoItemTags).forEach(tag => {
         containerInfo.appendChild(tag)
     });
-        
+
     const editItem = document.createElement('div');
     editItem.classList.add('flex', 'flex-col', 'justify-around', 'items-center', 'col-span-1');
 
@@ -75,4 +94,4 @@ const itemsTemplate = (items, action) => {
     return itemContainer;
 }
 
-export default itemsTemplate;
+export {itemsTemplate, createObjectTags};

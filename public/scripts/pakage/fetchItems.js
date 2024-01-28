@@ -20,5 +20,5 @@ const fetchItems = async(params={}) => {
 
 
 export {
-    fetchItems,
+    fetchItems
 };

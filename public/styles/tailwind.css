@@ -18,8 +18,16 @@ body {
 }
 
 .itemContainer {
-    @apply m-5 pr-2 pl-2 pt-5 pb-5 bg-gray-100 rounded-lg shadow-lg text-cyan-950 text-xs;
+    @apply m-5 pr-2 pl-2 pt-5 pb-5 rounded-lg shadow-lg text-cyan-950 text-xs;
     @apply grid grid-cols-3 gap-2;
+}
+
+.itemInfo {
+    @apply col-span-2 text-gray-100;
+}
+
+.buttonAdd {
+    @apply bg-pink-700 text-white rounded-lg p-2 h-2/4 self-center;
 }
 
 .formManipulate {
@@ -36,3 +44,6 @@ body {
 }
 
 
+.modalContainer {
+    max-width: 75%;
+}

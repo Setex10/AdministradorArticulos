@@ -55,6 +55,7 @@ route.get('/api/items', async (req, res) => {
             delete params[key]
         }
     })
+
     try{
         await client.connect()
         const db = client.db("InventoryStore")
@@ -63,11 +64,22 @@ route.get('/api/items', async (req, res) => {
         const projection = {
             "id_user": 0
         }
+        if(Object.keys(params).length == 0){
+            const itemsList = await itemsCollection.find({
+                id_user: new ObjectId(id_user)
+            }, {projection}).toArray()
+            res.status(200).json(itemsList)
+            return
+        }
+        const symbolRegex = new RegExp(`^${Object.values(params)[0] || ''}` + "[\\w\\s]*$")
+        const filter = {
+            id_user: new ObjectId(id_user),
+            [Object.keys(params)[0]] : {$regex: symbolRegex, $options: 'i'}
+        }
         const itemsList = await itemsCollection.find({
             id_user: new ObjectId(id_user),
-            ...params
+            ...filter
         }, {projection}).toArray()
-
         if(itemsList.length == 0){
             res.status(200).json([])
             return
@@ -92,7 +104,6 @@ route.post('/api/item', async (req, res) => {
             })
         }
     })
-    
     try{
         await client.connect()
         const db = client.db("InventoryStore")
@@ -136,19 +147,83 @@ route.put('/api/item', async (req, res) => {
         await client.connect()
         const db = client.db("InventoryStore")
         const items = db.collection("items")
+        const idUser = jwt.verify(req.cookies.token, process.env.TOKEN_SECRET).id
         const filter = {_id: new ObjectId(body._id), 
-            id_user: new ObjectId(req.cookies.user._id)}
+            id_user: new ObjectId(idUser)}
         delete body._id
         const set = {$set: body}
         const result = await items.updateOne(filter, set)
         if(result.modifiedCount === 0) throw new Error("No item found")
         res.status('200').json(result)
     } catch(error){
-        res.status(500).json(error)
+        console.log(error)
+        res.status(500).json({
+            message: error.message
+        })
     } finally {
         await client.close()
     }
 })
+
+route.put('/api/shopping-cart', async (req, res) => {
+    console.log(req.body)
+    const {body} = req
+    try{
+        await client.connect()
+        const db = client.db("InventoryStore")
+        const itemsCollection = db.collection("items")
+        const idUser = jwt.verify(req.cookies.token, process.env.TOKEN_SECRET).id
+        const filter = {
+            _id: {$in: body.map(item => new ObjectId(item.id_item))},
+            id_user: new ObjectId(idUser)
+        }
+        const result = await itemsCollection.find(filter).toArray()
+        const resultModified = await result.map(item => {
+            const itemToModify = body.find(itemToModify => itemToModify.id_item === item._id.toString())
+            return {
+                ...item,
+                quantity: item.quantity - itemToModify.quantity
+            }
+        })
+
+        if(resultModified.some(itemToModify => itemToModify.quantity < 0)){
+            res.status(400).json({
+                message: "No hay suficiente producto en inventario"
+            })
+            return
+        }
+        const bulkWrite = resultModified.map(item => {
+            return {
+                updateOne: {
+                    filter: {_id: item._id},
+                    update: {$set: {quantity: item.quantity}}
+                }
+            }
+        })
+        const bulkResult = await itemsCollection.bulkWrite(bulkWrite)
+        if(bulkResult.modifiedCount > 0) {
+            res.status(200).json({
+                message: 'Updated the items'
+            })
+            return
+        }
+        else {
+            res.status(400).json({
+                message: 'No items found'
+            })
+            return
+        }
+
+    }
+    catch(error){
+        res.status(500).json({
+            message: error.message
+        })
+    } finally {
+        await client.close()
+    }
+})
+
 
 
 module.exports = route

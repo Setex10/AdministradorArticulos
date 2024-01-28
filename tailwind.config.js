@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./views/**/*", "public/scripts/**/*", "public/styles/**/*"],
+  content: ["./public/views/*", "public/scripts/**/*", "public/styles/**/*"],
   theme: {
     extend: {
       keyframes: {
@@ -17,7 +17,11 @@ module.exports = {
         menu_mobile: "menu_mobile 0.5s ease-in-out forwards"
       }
     },
-    plugins: []
+    screens : {
+      "tablet": "768px",
+      "portatil": "1024px",
+    },
+    plugins: [],
   }
 }
 

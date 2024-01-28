@@ -1,27 +1,30 @@
 const btnMenu = document.querySelector('#menuBtn'),
     menu = document.querySelector('#menu'),
+    closeBtn = document.querySelector('#closeBtn'),
+    menuBackground = document.querySelector('#menuBackground'),
     menuChildren = document.querySelector('#menuChildren')
 
-const openMenu = (tag) => {
+const openMenu = () => {
     menu.classList.toggle('hidden');
+    menu.classList.toggle('grid')
     btnMenu.classList.toggle('hidden');
     menuChildren.classList.toggle("animate-menu_mobile")
 }
 
-const closeMenu = (tag) => {
+const closeMenu = () => {
     menu.classList.toggle('hidden');
+    menu.classList.toggle('grid')
     btnMenu.classList.toggle('hidden');
     menuChildren.classList.toggle("animate-menu_mobile")
 }
 
-const menuBackgroundEvent = (tag) => {
+const menuBackgroundEvent = () => {
     menu.classList.toggle('hidden');
+    menu.classList.toggle('grid')
     btnMenu.classList.toggle('hidden');
     menuChildren.classList.toggle("animate-menu_mobile")
 }
 
-export {
-    openMenu,
-    closeMenu,
-    menuBackgroundEvent
-};
+btnMenu.addEventListener('click', openMenu);
+closeBtn.addEventListener('click', closeMenu);
+menuBackground.addEventListener('click', menuBackgroundEvent);

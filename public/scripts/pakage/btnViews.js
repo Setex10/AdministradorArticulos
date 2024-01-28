@@ -1,4 +1,4 @@
-import itemsTemplate from "./loadItems.js";
+import {itemsTemplate} from "./loadItems.js";
 import data from "./data.js";
 
 const itemsListConainer = document.querySelector("#itemsListConainer")

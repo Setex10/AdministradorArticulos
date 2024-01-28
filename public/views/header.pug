@@ -1,15 +1,17 @@
 header(class="w-full h-12")
-    img(class="w-1/12 fixed top-1 left-1", src="./images/menu.png", alt="menu", id="menuBtn")
-    div(class="z-50 absolute grid grid-cols-2 top-0 h-screen w-full hidden" id="menu")
-        nav(class="h-screen w-full bg-slate-800" id="menuChildren")
-            div(class="flex flex-col items-center")
-                ul(class="w-3/4 h-full text-xl text-cyan-100")
-                    li
+    img(class="fixed top-1 left-1 w-1/12 tablet:hidden", src="./images/menu.png", alt="menu", id="menuBtn")
+    div(class="z-50 fixed grid-cols-2 top-0 h-full w-full hidden tablet:relative tablet:flex tablet:flex-col tablet:z-0" id="menu")
+        nav(class="h-full w-full bg-slate-800 tablet:h-10" id="menuChildren")
+            div(class="flex flex-col items-center tablet:h-full")
+                ul(class="w-3/4 h-full text-xl text-cyan-100 tablet:flex tablet:flex-row tablet:justify-center tablet:items-center")
+                    li(class="tablet:hidden" )
                         img(class="w-1/12 mt-5 mb-5", src="./images/close.png", alt="close", id="closeBtn")
                     li(class="m-3")
                         a(href="/") Inicio
                     li(class="m-3")
                         a(href="/inventory") Inventario
                     li(class="m-3")
+                        a(href="/store") Tienda
+                    li(class="m-3")
                         a(href="/logout") Cerrar sesión
-        include ./menuBackground.pug
+        div(class="w-full h-screen bg-slate-950/50 tablet:hidden", id="menuBackground")

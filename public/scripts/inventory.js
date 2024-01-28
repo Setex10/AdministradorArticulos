@@ -1,18 +1,12 @@
 
 import { modalAdd } from "./pakage/modal.js";
 import { btnViewItemsEvent} from "./pakage/btnViews.js";
-import itemsTemplate from "./pakage/loadItems.js";
-import { openMenu, closeMenu, menuBackgroundEvent } from "./pakage/menuAnimated.js";
+import {itemsTemplate} from "./pakage/loadItems.js";
 import data from "./pakage/data.js";
-import formFilterEvent from "./pakage/filterData.js";
 
 const itemsListConainer = document.querySelector("#itemsListConainer"),
-    btnAddItems = document.querySelector("#addNewItem"),
-    btnViewItems = document.querySelector("#viewItems"),
-    menuBtn = document.querySelector('#menuBtn'),
-    closeBtn = document.querySelector('#closeBtn'),
-    menuBackground = document.querySelector('#menuBackground'),
-    formFilter = document.querySelector('#formFilter');
+    btnAddItems = document.querySelector("#addNewItem");
+    // btnViewItems = document.querySelector("#viewItems");
 
 btnAddItems.addEventListener('click', () => {
     modalAdd();
@@ -36,11 +30,6 @@ data().then((data) => {
 }
 );
 
-formFilter.addEventListener('submit', formFilterEvent);
-btnViewItems.addEventListener('click', btnViewItemsEvent);
-
-menuBtn.addEventListener('click', openMenu);
-closeBtn.addEventListener('click', closeMenu);
-menuBackground.addEventListener('click', menuBackgroundEvent);
+// btnViewItems.addEventListener('click', btnViewItemsEvent);
 
 
