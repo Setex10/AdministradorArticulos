@@ -13,7 +13,8 @@ formRegister.addEventListener('submit', async (event) => {
         body: JSON.stringify(query)
     })
     if(fetchToUser.ok) {
-        document.querySelector(".modal").remove();
+        
+        document.location.href = 'http://localhost:3000/login'
     } else {
         const error = await fetchToUser.json();
         const messageTag = document.createElement('p');
