@@ -11,7 +11,7 @@ const fetchToApi = async(url) => {
 }
 
 const fetchItems = async(params={}) => {
-    let url = "https://manageitems.onrender.com/api/items"
+    let url = "http://localhost:3000/api/items"
     if(Object.keys(params).length > 0){
         url += "?" + new URLSearchParams(params).toString()
     }

@@ -13,7 +13,7 @@ const formLoginEvent = async(event) => {
         body: JSON.stringify(query)
     })
     if(fetchToUser.ok) {
-        document.location.href = 'https://manageitems.onrender.com/inventory'
+        document.location.href = 'http://localhost:3000/inventory'
     }
     else {
         const error = await fetchToUser.json();
