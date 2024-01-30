@@ -228,14 +228,14 @@ const modalListItems = (items) => {
     }
 
     items.forEach(item => {
-        const formAddItem = createTags({tag: 'form', class: 'formManipulate', 
+        const formAddItem = createTags({tag: 'form', class: 'formManipulate w-full', 
         addEventListener: ['submit', formAddItemEvent], subTag: [
             {tag: 'input', type: 'hidden', name: 'id_item', value: item._id},
             {tag: 'input', type: 'hidden', name: 'name', value: item.name},
             {tag: 'input', type: 'hidden', name: 'amount', value: item.amount},
             {tag: 'input', type: 'hidden', name: 'unit', value: item.unit},
-            {tag: 'input', class:'quantity_input', type: 'number', name: 'quantity', min: 1, placeholder: 'Cantidad'},
-            {tag: 'button', type: 'submit', textContent: 'Agregar'}
+            {tag: 'input', class:'w-full p-2 rounded', type: 'number', name: 'quantity', min: 1, placeholder: 'Cantidad'},
+            {tag: 'button', class:'w-full', type: 'submit', textContent: 'Agregar'}
         ]})
 
         delete item.unit_price
