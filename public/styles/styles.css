@@ -633,6 +633,9 @@ video {
 .h-1\/2 {
   height: 50%;
 }
+.h-1\/4 {
+  height: 25%;
+}
 .h-10 {
   height: 2.5rem;
 }
@@ -679,8 +682,8 @@ video {
 .h-screen {
   height: 100vh;
 }
-.min-h-\[24rem\] {
-  min-height: 24rem;
+.min-h-\[20rem\] {
+  min-height: 20rem;
 }
 .w-1 {
   width: 0.25rem;
@@ -1027,9 +1030,16 @@ video {
 .to-sky-800 {
   --tw-gradient-to: #075985 var(--tw-gradient-to-position);
 }
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+.p-1 {
+  padding: 0.25rem;
 }
 .p-2 {
   padding: 0.5rem;
@@ -1284,7 +1294,6 @@ body {
 }
 .formManipulate button {
   margin-top: 0.5rem;
-  width: 75%;
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(190 24 93 / var(--tw-bg-opacity));
@@ -1304,6 +1313,10 @@ body {
 .hover\:bg-blue-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
+.hover\:bg-red-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
 }
 .hover\:bg-slate-700:hover {
   --tw-bg-opacity: 1;
@@ -1384,6 +1397,16 @@ body {
 
   .tablet\:justify-center {
     justify-content: center;
+  }
+
+  .tablet\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .tablet\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 @media (min-width: 1024px) {

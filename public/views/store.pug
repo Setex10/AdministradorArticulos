@@ -7,20 +7,20 @@ html(lang="en")
         title Store
     body
         include header.pug
-        main(class="w-full h-full flex flex-col items-center p-5")
-            div(id="searchItem", class="h-full")
+        main(class="w-full h-full flex flex-col items-center p-1")
+            div(id="searchItem", class="h-1/4 p-1")
                 form(action="/api/items", method="get")
-                    label(class="") Buscar por: 
+                    label(class="text-white") Buscar por: 
                         select(name="filter", class="m-2 rounded-2xl p-2 text-black" )
                             option(value="name") Nombre
                             option(value="product_key") Clave del producto
                     input(class="m-2 rounded-2xl p-2 text-black", type="text", name="value", placeholder="Valor")
                     button(class="m-2 rounded-2xl p-2 text-black bg-emerald-500 portatil:hidden", 
                             type="submit") Buscar
-            div(id="storeContainer", class="h-full w-full min-h-[24rem] overflow-y-scroll")
-                table(class="w-full h-3/4 mb-2")
+            div(id="storeContainer", class="h-1/2 w-full min-h-[20rem] overflow-y-scroll")
+                table(class="w-full h-1/2 mb-2")
                     thead(class="w-full")
-                        tr(class="w-full h-4 gap-1 text-sm")
+                        tr(class="w-full h-4 gap-1 text-sm text-white bg-slate-800")
                             th(class="w-1/4") Nombre
                             th Unidad
                             th Precio

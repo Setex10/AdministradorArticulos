@@ -39,7 +39,7 @@ body {
         }
     }
     & button {
-        @apply w-3/4 bg-pink-700 text-white rounded-lg p-2 mt-2;
+        @apply bg-pink-700 text-white rounded-lg p-2 mt-2;
     }
 }
 
